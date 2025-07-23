@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Run Script Extension</title>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      width: 350px;
+      padding: 15px;
+    }
+    h1 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    textarea {
+      height: 150px;
+      resize: vertical;
+      font-family: monospace;
+      font-size: 12px;
+    }
+    button {
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #3367d6;
+    }
+    .shortcut-list {
+      margin-top: 20px;
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
+    }
+    .shortcut-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px;
+      border-bottom: 1px solid #eee;
+      align-items: center;
+    }
+    .shortcut-key {
+      font-weight: bold;
+    }
+    .actions {
+      display: flex;
+      gap: 5px;
+    }
+    .btn-delete {
+      background-color: #ea4335;
+    }
+    .btn-delete:hover {
+      background-color: #d33426;
+    }
+    .btn-small {
+      padding: 4px 8px;
+      font-size: 12px;
+    }
+    .file-input-container {
+      display: flex;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+    .file-input-container input[type="file"] {
+      flex: 1;
+      margin-right: 10px;
+    }
+    .file-input-container button {
+      white-space: nowrap;
+    }
+    .helper-toggle {
+      font-size: 12px;
+      color: #4285f4;
+      cursor: pointer;
+      margin-top: 5px;
+      text-decoration: underline;
+    }
+    .helper-content {
+      display: none;
+      margin-top: 10px;
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    .helper-content code {
+      font-family: monospace;
+      background-color: #e0e0e0;
+      padding: 2px 4px;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Run Script Extension</h1>
+  
+  <div class="form-group">
+    <label for="shortcut">Phím tắt:</label>
+    <input type="text" id="shortcut" placeholder="Ví dụ: Ctrl+Shift+1 hoặc A" />
+  </div>
+  
+  <div class="form-group">
+    <label for="script">Script:</label>
+    <div class="file-input-container">
+      <input type="file" id="fileInput" accept=".js,.txt" />
+      <button id="loadFileButton">Tải file</button>
+    </div>
+    <textarea id="script" placeholder="Nhập JavaScript code ở đây..."></textarea>
+  </div>
+  
+  <button id="saveButton">Update phím tắt</button>
+  
+  <div class="shortcut-list">
+    <h2>Danh sách phím tắt</h2>
+    <div id="shortcutList"></div>
+  </div>
+
+  <script src="popup.js"></script>
+  <script>
+    // Xử lý hiển thị/ẩn helper
+    document.getElementById('helperToggle').addEventListener('click', function() {
+      const helperContent = document.getElementById('helperContent');
+      if (helperContent.style.display === 'block') {
+        helperContent.style.display = 'none';
+      } else {
+        helperContent.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html> 
