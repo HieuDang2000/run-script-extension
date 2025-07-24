@@ -216,4 +216,22 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   }
 });
 
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.command === "switchToNextTab") {
+    chrome.tabs.query({currentWindow: true, active: true}, (tabs) => {
+      const currentTab = tabs[0];
+      chrome.tabs.query({currentWindow: true}, (allTabs) => {
+        const nextIndex = (currentTab.index + 1) % allTabs.length;
+        chrome.tabs.update(allTabs[nextIndex].id, {active: true}, () => {
+          sendResponse({result: "tab switched"});
+        });
+      });
+    });
+    // Need to return true to indicate sendResponse will be called asynchronously
+    return true; 
+  }
+});
+
+
+
 console.log('Background script đã được khởi chạy'); 
