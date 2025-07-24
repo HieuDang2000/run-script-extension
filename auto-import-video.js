@@ -185,7 +185,7 @@
         },
         "bootstrapSelectAction": "toggle",
         "selectId": "cat_wp_select",
-        "timeSincePrevious": 1216
+        "timeSincePrevious": 100
     },
     {
         "step": 2,
@@ -392,7 +392,7 @@
         "optionIndex": "2",
         "optionValue": "null",
         "optionText": "+ Add a new category",
-        "timeSincePrevious": 1023
+        "timeSincePrevious": 200
     },
     {
         "step": 3,
@@ -729,7 +729,7 @@
             "x": 858,
             "y": 207
         },
-        "timeSincePrevious": 1513
+        "timeSincePrevious": 500
     },
     {
         "step": 5,

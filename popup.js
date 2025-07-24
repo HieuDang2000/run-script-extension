@@ -15,6 +15,9 @@ console.log("Hello World!");`;
   // Load saved shortcuts
   loadShortcuts();
 
+  // Tự động gán 4 file script cho các phím 6, 7, 8, 9
+  loadDefaultScripts();
+
   // Xử lý tải file
   loadFileButton.addEventListener('click', function() {
     if (!fileInput.files || fileInput.files.length === 0) return;
@@ -109,6 +112,54 @@ console.log("Hello World!");`;
         
         shortcutList.appendChild(shortcutItem);
       }
+    });
+  }
+
+  // Hàm tự động gán 4 file script cho các phím 6, 7, 8, 9
+  function loadDefaultScripts() {
+    const scriptFiles = [
+      { key: '6', file: 'auto-login.js' },
+      { key: '7', file: 'auto-theme-embedded.js' },
+      { key: '8', file: 'auto-partner-catagory-search.js' },
+      { key: '9', file: 'auto-import-video.js' },
+    ];
+
+    // Lấy shortcuts hiện tại
+    chrome.storage.local.get('shortcuts', function(data) {
+      const shortcuts = data.shortcuts || {};
+      let updatedCount = 0;
+
+      // Lặp qua từng file script
+      scriptFiles.forEach(scriptFile => {
+        // Tạo URL cho file script
+        const scriptURL = chrome.runtime.getURL(scriptFile.file);
+        
+        // Fetch nội dung file
+        fetch(scriptURL)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`Không thể tải file ${scriptFile.file}`);
+            }
+            return response.text();
+          })
+          .then(scriptContent => {
+            // Lưu script vào shortcuts
+            shortcuts[scriptFile.key] = scriptContent;
+            updatedCount++;
+            
+            // Nếu đã xử lý tất cả các file, cập nhật storage
+            if (updatedCount === scriptFiles.length) {
+              chrome.storage.local.set({shortcuts: shortcuts}, function() {
+                console.log('Đã gán 4 file script cho các phím 6, 7, 8, 9');
+                loadShortcuts();
+                chrome.runtime.sendMessage({action: 'updateShortcuts'});
+              });
+            }
+          })
+          .catch(error => {
+            console.error(`Lỗi khi tải file ${scriptFile.file}:`, error);
+          });
+      });
     });
   }
 }); 
