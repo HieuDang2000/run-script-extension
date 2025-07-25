@@ -1,5 +1,5 @@
 const step1 = document.querySelector("#activate-wp-script-core");
-const step2 = document.querySelector("#toplevel_page_wpscore-dashboard > ul > li.wp-first-item > a");
+const step2 = document.querySelector("#toplevel_page_wpscore-dashboard > a > div.wp-menu-name");
 const step3_1 = document.querySelector("#dashboard > div.tab-content > div > div > div.v-cloak--hidden > div > div > div > div > div > div.row > div > div > input")
 const step3_2 = document.querySelector("#dashboard > div.tab-content > div > div > div.v-cloak--hidden > div > div > div > div > div > div.row > div > div > span.input-group-btn > button")
 const step4 = document.querySelector("#toplevel_page_wpscore-dashboard > ul > li:nth-child(4) > a");
