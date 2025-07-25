@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Run Script Extension",
+  "name": "Run Script Hiro-version",
   "version": "1.0",
   "description": "Chạy script với phím tắt",
   "permissions": [
