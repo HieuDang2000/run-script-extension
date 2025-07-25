@@ -729,7 +729,7 @@
             "x": 858,
             "y": 207
         },
-        "timeSincePrevious": 500
+        "timeSincePrevious": 1000
     },
     {
         "step": 5,
@@ -787,7 +787,7 @@
             "x": 621,
             "y": 821
         },
-        "timeSincePrevious": 3118
+        "timeSincePrevious": 6118
     }
 ];
 
