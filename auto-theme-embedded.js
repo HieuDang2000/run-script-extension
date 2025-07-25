@@ -95,33 +95,33 @@
         }
     }
 
-    // Process all product buttons sequentially
+    // Process all product buttons simultaneously
     async function processProducts() {
         console.log('Starting product button automation...');
 
-        // Product FTT
-        await clickButtonAndWaitForPopup(
-            "#product_ftt > div.product__footer > button",
-            "#product_ftt > div.product__over.show.product__over--show > div > p > button"
-        );
+        // Thực hiện tất cả các thao tác cùng một lúc
+        const promises = [
+            // Product FTT
+            clickButtonAndWaitForPopup(
+                "#product_ftt > div.product__footer > button",
+                "#product_ftt > div.product__over.show.product__over--show > div > p > button"
+            ),
 
-        // Wait before proceeding to next product
-        await new Promise(resolve => setTimeout(resolve, 1000));
+            // Product AMVE
+            clickButtonAndWaitForPopup(
+                "#product_amve > div.product__footer > button",
+                "#product_amve > div.product__over.show.product__over--show > div > p > button"
+            ),
 
-        // Product AMVE
-        await clickButtonAndWaitForPopup(
-            "#product_amve > div.product__footer > button",
-            "#product_amve > div.product__over.show.product__over--show > div > p > button"
-        );
+            // Product CTPL
+            clickButtonAndWaitForPopup(
+                "#product_ctpl > div.product__footer > button",
+                "#product_ctpl > div.product__over.show.product__over--show > div > p > button"
+            )
+        ];
 
-        // Wait before proceeding to next product
-        await new Promise(resolve => setTimeout(resolve, 1000));
-
-        // Product CTPL
-        await clickButtonAndWaitForPopup(
-            "#product_ctpl > div.product__footer > button",
-            "#product_ctpl > div.product__over.show.product__over--show > div > p > button"
-        );
+        // Đợi tất cả các thao tác hoàn thành
+        await Promise.all(promises);
 
         console.log('Product button automation completed!');
     }
