@@ -5,3 +5,4 @@ chrome.runtime.sendMessage({ command: "switchToNextTab" }, (response) => {
     console.log(response.result);
 });
 console.log("test");
+//cc
