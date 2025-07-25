@@ -69,6 +69,20 @@
         });
     }
 
+    // Scroll to the end of the page
+    function scrollToEndOfPage() {
+        return new Promise(resolve => {
+            console.log('Scrolling to the end of the page...');
+            window.scrollTo(0, document.body.scrollHeight);
+            
+            // Đợi một chút để trang hiển thị đầy đủ sau khi cuộn
+            setTimeout(() => {
+                console.log('Scrolled to the end of the page');
+                resolve();
+            }, 1000);
+        });
+    }
+
     // Click a button and wait for popup
     async function clickButtonAndWaitForPopup(buttonSelector, popupSelector, popupClass = 'show') {
         try {
@@ -98,6 +112,10 @@
     // Process all product buttons simultaneously
     async function processProducts() {
         console.log('Starting product button automation...');
+        //firt go to endpage
+        
+        // Trước tiên cuộn xuống cuối trang để đảm bảo tất cả các phần tử đều hiển thị
+        await scrollToEndOfPage();
 
         // Thực hiện tất cả các thao tác cùng một lúc
         const promises = [
