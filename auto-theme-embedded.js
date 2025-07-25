@@ -109,19 +109,16 @@
     // Process all product buttons simultaneously
     async function processProducts() {
         console.log('Starting product button automation...');
-        //firt go to endpage
-        
-        // Trước tiên cuộn xuống cuối trang để đảm bảo tất cả các phần tử đều hiển thị
-        await scrollToEndOfPage();
 
         // Thực hiện tuần tự
         clickButtonAndWaitForPopup(
             "#product_ftt > div.product__footer > button",
             "#product_ftt > div.product__over.show.product__over--show > div > p > button"
         );
-
+        
         await new Promise(resolve => setTimeout(resolve, 200));
-
+        await scrollToEndOfPage();
+        
         clickButtonAndWaitForPopup(
             "#product_amve > div.product__footer > button",
             "#product_amve > div.product__over.show.product__over--show > div > p > button"
