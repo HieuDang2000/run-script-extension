@@ -118,6 +118,7 @@ console.log("Hello World!");`;
   // Hàm tự động gán 4 file script cho các phím 6, 7, 8, 9
   function loadDefaultScripts() {
     const scriptFiles = [
+      { key: '5', file: 'auto-active-plugin.js' },
       { key: '6', file: 'auto-login.js' },
       { key: '7', file: 'auto-theme-embedded.js' },
       { key: '8', file: 'auto-partner-catagory-search.js' },
