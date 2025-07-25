@@ -88,18 +88,15 @@
         try {
             // Find and click the initial button
             const button = await waitForElement(buttonSelector);
-            console.log(`Clicking button: ${buttonSelector}`);
             button.click();
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            await new Promise(resolve => setTimeout(resolve, 1000));
 
             // Wait for popup to appear with the 'show' class
             const popupBaseSelector = popupSelector.split('.show')[0];
             await waitForClass(popupBaseSelector, popupClass);
-            console.log(`Popup appeared: ${popupSelector}`);
 
             // Find and click the popup button
             const popupButton = await waitForElement(popupSelector);
-            console.log(`Clicking popup button: ${popupSelector}`);
             popupButton.click();
 
             return true;
@@ -117,29 +114,25 @@
         // Trước tiên cuộn xuống cuối trang để đảm bảo tất cả các phần tử đều hiển thị
         await scrollToEndOfPage();
 
-        // Thực hiện tất cả các thao tác cùng một lúc
-        const promises = [
-            // Product FTT
-            clickButtonAndWaitForPopup(
-                "#product_ftt > div.product__footer > button",
-                "#product_ftt > div.product__over.show.product__over--show > div > p > button"
-            ),
+        // Thực hiện tuần tự
+        clickButtonAndWaitForPopup(
+            "#product_ftt > div.product__footer > button",
+            "#product_ftt > div.product__over.show.product__over--show > div > p > button"
+        );
 
-            // Product AMVE
-            clickButtonAndWaitForPopup(
-                "#product_amve > div.product__footer > button",
-                "#product_amve > div.product__over.show.product__over--show > div > p > button"
-            ),
+        await new Promise(resolve => setTimeout(resolve, 200));
 
-            // Product CTPL
-            clickButtonAndWaitForPopup(
-                "#product_ctpl > div.product__footer > button",
-                "#product_ctpl > div.product__over.show.product__over--show > div > p > button"
-            )
-        ];
+        clickButtonAndWaitForPopup(
+            "#product_amve > div.product__footer > button",
+            "#product_amve > div.product__over.show.product__over--show > div > p > button"
+        );
 
-        // Đợi tất cả các thao tác hoàn thành
-        await Promise.all(promises);
+        await new Promise(resolve => setTimeout(resolve, 200));
+
+        clickButtonAndWaitForPopup(
+            "#product_ctpl > div.product__footer > button",
+            "#product_ctpl > div.product__over.show.product__over--show > div > p > button"
+        );
 
         console.log('Product button automation completed!');
     }
