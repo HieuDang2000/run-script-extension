@@ -76,6 +76,7 @@
             const button = await waitForElement(buttonSelector);
             console.log(`Clicking button: ${buttonSelector}`);
             button.click();
+            await new Promise(resolve => setTimeout(resolve, 1500));
 
             // Wait for popup to appear with the 'show' class
             const popupBaseSelector = popupSelector.split('.show')[0];
@@ -105,7 +106,7 @@
         );
 
         // Wait before proceeding to next product
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
         // Product AMVE
         await clickButtonAndWaitForPopup(
@@ -114,7 +115,7 @@
         );
 
         // Wait before proceeding to next product
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
         // Product CTPL
         await clickButtonAndWaitForPopup(

@@ -392,7 +392,7 @@
         "optionIndex": "2",
         "optionValue": "null",
         "optionText": "+ Add a new category",
-        "timeSincePrevious": 200
+        "timeSincePrevious": 400
     },
     {
         "step": 3,
@@ -787,7 +787,7 @@
             "x": 621,
             "y": 821
         },
-        "timeSincePrevious": 2118
+        "timeSincePrevious": 3118
     }
 ];
 

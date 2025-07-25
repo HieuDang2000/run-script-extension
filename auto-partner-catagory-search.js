@@ -352,7 +352,7 @@
             "optionIndex": "10",
             "optionValue": "null",
             "optionText": "PornerBros",
-            "timeSincePrevious": 200
+            "timeSincePrevious": 400
         },
         {
             "step": 3,
@@ -688,7 +688,7 @@
             },
             "bootstrapSelectAction": "toggle",
             "selectId": "cat_s_select",
-            "timeSincePrevious": 1405
+            "timeSincePrevious": 4005
         },
         {
             "step": 5,
@@ -893,7 +893,7 @@
             "optionIndex": "10",
             "optionValue": "null",
             "optionText": "Creampie",
-            "timeSincePrevious": 200
+            "timeSincePrevious": 400
         },
         {
             "step": 6,
@@ -1212,7 +1212,7 @@
                 "x": 255,
                 "y": 629
             },
-            "timeSincePrevious": 3591
+            "timeSincePrevious": 5591
         }
     ];
 
