@@ -1282,7 +1282,7 @@
                 } else if (action.bootstrapSelectAction === 'select') {
                     // Xử lý đặc biệt cho bước 2 - chọn ngẫu nhiên partner
                     if (action.step === 2) {
-                        const partners = ['xHamster', 'Xvideos', 'Pornhub', 'Redtube', 'Youporn', 'DrTuber', 'XNXX'];
+                        const partners = ['xHamster', 'Pornhub', 'Redtube', 'Youporn', 'DrTuber', 'XNXX'];
                         const randomPartner = partners[Math.floor(Math.random() * partners.length)];
                         console.log('Randomly selected partner:', randomPartner);
 
