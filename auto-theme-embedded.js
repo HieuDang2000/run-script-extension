@@ -74,7 +74,7 @@
         return new Promise(resolve => {
             console.log('Scrolling to the end of the page...');
             window.scrollTo(0, document.body.scrollHeight);
-            
+
             // Đợi một chút để trang hiển thị đầy đủ sau khi cuộn
             setTimeout(() => {
                 console.log('Scrolled to the end of the page');
@@ -106,30 +106,44 @@
         }
     }
 
-    // Process all product buttons simultaneously
+    // Check if an element exists in the DOM
+    function elementExists(selector) {
+        return document.querySelector(selector) !== null;
+    }
+
+    // Process products sequentially with checks
     async function processProducts() {
         console.log('Starting product button automation...');
 
-        // Thực hiện tuần tự
-        clickButtonAndWaitForPopup(
-            "#product_ftt > div.product__footer > button",
-            "#product_ftt > div.product__over.show.product__over--show > div > p > button"
-        );
-        
-        await new Promise(resolve => setTimeout(resolve, 200));
-        await scrollToEndOfPage();
-        
-        clickButtonAndWaitForPopup(
-            "#product_amve > div.product__footer > button",
-            "#product_amve > div.product__over.show.product__over--show > div > p > button"
-        );
+        // Bước 1: Xử lý sản phẩm đầu tiên
+        if (elementExists("#product_ftt > div.product__footer > button")) {
+            console.log('Thực hiện bước 1: Xử lý product_ftt');
+            await clickButtonAndWaitForPopup(
+                "#product_ftt > div.product__footer > button",
+                "#product_ftt > div.product__over.show.product__over--show > div > p > button"
+            );
+        } else {
+            // Bước 2: Kiểm tra nút đầu tiên không tồn tại hoặc đã xử lý xong, chuyển sang nút thứ hai
+            if (elementExists("#product_amve > div.product__footer > button")) {
+                console.log('Thực hiện bước 2: Xử lý product_amve');
+                await clickButtonAndWaitForPopup(
+                    "#product_amve > div.product__footer > button",
+                    "#product_amve > div.product__over.show.product__over--show > div > p > button"
+                );
+            } else {
+                // Bước 3: Kiểm tra nút thứ hai không tồn tại hoặc đã xử lý xong, chuyển sang nút thứ ba
+                if (elementExists("#product_ctpl > div.product__footer > button")) {
+                    console.log('Thực hiện bước 3: Xử lý product_ctpl');
+                    await clickButtonAndWaitForPopup(
+                        "#product_ctpl > div.product__footer > button",
+                        "#product_ctpl > div.product__over.show.product__over--show > div > p > button"
+                    );
+                }
 
-        await new Promise(resolve => setTimeout(resolve, 200));
+            }
 
-        clickButtonAndWaitForPopup(
-            "#product_ctpl > div.product__footer > button",
-            "#product_ctpl > div.product__over.show.product__over--show > div > p > button"
-        );
+        }
+
 
         console.log('Product button automation completed!');
     }
